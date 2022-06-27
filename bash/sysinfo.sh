@@ -1,9 +1,26 @@
 #!/bin/bash
 
+hname=`hostname`
 
-echo "Host Name: `hostname -f`"
-echo "Domain Name: `hostname -d`"
-echo -e "\nOperating System name and version: \n`cat /etc/os-release | grep PRETTY_NAME=`"
-echo -e "\nIP Addresses: \n`hostname -i`"
-echo -e "\nRoot Filesystem Status:\n`df -h /`"
+domain=`hostname -f`
 
+os_vers=`cat /etc/os-release |  grep PRETTY |  awk -F'"' '{print $2}'`
+
+ips=`hostname -I`
+
+file=`df -h --output=avail /`
+
+cat <<EOF
+
+REPORT FOR $hname
+=======================
+FQDN: $domain
+Operating System: 
+	$os_vers
+IP Address: 
+	$ips
+Root Filesystem Status:
+	$file
+============================
+
+EOF
