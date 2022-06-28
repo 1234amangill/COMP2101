@@ -14,18 +14,37 @@
 #   You will need multiple tests to set a title
 #   Invent your own titles, do not use the ones from this example
 
-###############
-# Variables   #
-###############
-title="Overlord"
-myname="dennis"
-hostname="myhostname"
+myname="$USER"
+hostname=`hostname`
+currentdate=`date +"%A %l:%M %p"`
+day=`date +"%A"`
+
+if [[  $day == "Monday" ]];
+then
+	title="adventurous"
+elif [[  $day == "Tuesday" ]] ;
+then
+	title="extroverted"
+elif [[  $day == "Wednesday" ]]; 
+then
+	title="gregarious"
+elif [[  $day == "Thursday" ]] ;
+then
+	title="talkative"
+elif [[  $day == "Friday" ]] ;
+then
+	title="thoughful"
+elif [[  $day == "Saturday" ]]; 
+then
+	title="enthusiastic"
+else
+	title ="sensible"
+fi
 
 ###############
 # Main        #
 ###############
 cat <<EOF
-
 Welcome to planet $hostname, "$title $myname!"
-
+It is  $currentdate
 EOF
